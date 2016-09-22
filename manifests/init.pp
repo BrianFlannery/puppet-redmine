@@ -305,6 +305,7 @@ class redmine (
   # set up database
   include "redmine::${redmine::db_type}"
 
+  include 'devops::ruby'
   # package { 'bundler':
   #   ensure   => 'present',
   #   provider => 'gem',
