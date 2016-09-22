@@ -305,17 +305,18 @@ class redmine (
   # set up database
   include "redmine::${redmine::db_type}"
 
-  package { 'bundler':
-    ensure   => 'present',
-    provider => 'gem',
-  }
+  # package { 'bundler':
+  #   ensure   => 'present',
+  #   provider => 'gem',
+  # }
+  Class['devops::ruby'] ->
   exec { 'Install gems using bundler':
     command     => "bundle install --path ${redmine::user_home}/.gem",
     user        => $redmine::user,
     cwd         => $redmine::install_dir,
     path        => $path,
     environment => $gemenv,
-    require     => Package['bundler'],
+    # require     => Package['bundler'],
     notify      => Exec['Generate secret token'],
   }
 
