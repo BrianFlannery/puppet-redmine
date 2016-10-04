@@ -337,7 +337,8 @@ class redmine (
     cwd         => $redmine::install_dir,
     path        => $path,
     environment => $gemenv,
-    require     => Class['devops::ruby'],
+    # require     => Class['devops::ruby'],
+    require     => Package['bundler'],
     notify      => Exec['Generate secret token'],
   }
 
